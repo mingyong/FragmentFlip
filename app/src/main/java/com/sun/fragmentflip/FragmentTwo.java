@@ -9,16 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class FragmentTwo extends Fragment {
+public class FragmentTwo extends Fragment implements View.OnClickListener {
     public FragmentTwo() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_two, container, false);
+        View vTwo = inflater.inflate(R.layout.fragment_two, container, false);
+        vTwo.findViewById(R.id.two).setOnClickListener(this);
+        return vTwo;
     }
 
-
+    @Override
+    public void onClick(View v) {
+        getFragmentManager().beginTransaction()
+                .setCustomAnimations(R.animator.enter_re, R.animator.exit_re)
+                .replace(R.id.ly_content, new FragmentOne())
+                .commit();
+    }
 }

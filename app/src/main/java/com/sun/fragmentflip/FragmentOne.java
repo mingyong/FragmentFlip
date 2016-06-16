@@ -13,22 +13,26 @@ public class FragmentOne extends Fragment implements View.OnClickListener {
     private View vOne;
 
     public FragmentOne() {
-        // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        vOne = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_one, container, false);
+        vOne = inflater.inflate(R.layout.fragment_one, container, false);
         vOne.findViewById(R.id.one).setOnClickListener(this);
-
         return vOne;
     }
 
-
+    /**
+     * 设置动画，注意导入的是android.app.Fragment;
+     *
+     */
     @Override
     public void onClick(View v) {
-       getFragmentManager().beginTransaction().setCustomAnimations(R.animator.enter,R.animator.exit ).replace(R.id.ly_content,new FragmentTwo()).commit();
+       getFragmentManager().beginTransaction()
+               .setCustomAnimations(R.animator.enter,R.animator.exit )
+               .replace(R.id.ly_content,new FragmentTwo())
+               .commit();
     }
 }
