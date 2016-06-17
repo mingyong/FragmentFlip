@@ -23,9 +23,6 @@ public class FragmentTwo extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        getFragmentManager().beginTransaction()
-                .setCustomAnimations(R.animator.enter_re, R.animator.exit_re)
-                .replace(R.id.ly_content, new FragmentOne())
-                .commit();
+        getFragmentManager().popBackStack();
     }
 }
